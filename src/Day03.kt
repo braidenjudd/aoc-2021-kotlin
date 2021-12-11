@@ -33,11 +33,8 @@ private fun reduceInputByCommonBit(input: List<String>, evalFunction: (String) -
     val correctBit = evalFunction(input.asColumns()[columnIndex])
     val inputWithCorrectBit = input.filter { it[columnIndex] == correctBit }
 
-    return if (columnIndex == input.first().length - 1 || inputWithCorrectBit.size == 1) {
-        inputWithCorrectBit.first()
-    } else {
-        reduceInputByCommonBit(inputWithCorrectBit, evalFunction, columnIndex + 1)
-    }
+    return inputWithCorrectBit.singleOrNull()
+        ?: reduceInputByCommonBit(inputWithCorrectBit, evalFunction, columnIndex + 1)
 }
 
 private fun String.isMostlyOnes(): Boolean =

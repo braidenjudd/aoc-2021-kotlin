@@ -27,20 +27,17 @@ fun <V, T : Collection<V>> List<T>.transpose(): List<List<V>> {
     return columns
 }
 
-fun List<String>.asColumns(): List<String> {
-    val numberOfColumns = this.first().length
-    val columns: List<StringBuilder> = IntRange(0, numberOfColumns - 1).map { StringBuilder() }
-
-    this.forEach { line ->
-        line.forEachIndexed { index, bit ->
-            columns[index].append(bit)
-        }
-    }
-
-    return columns.map { it.toString() }
-}
+fun List<String>.asColumns(): List<String> = this
+    .map { it.toList() }
+    .transpose()
+    .map { it.joinToString("") }
 
 fun String.toListOfInts(): List<Int> = this
     .split(Regex("\\s+"))
     .filter { it.isNotBlank() }
     .map { value -> value.toInt() }
+
+fun Int.checkAndPrint(expected: Int) {
+    check(this == expected)
+    println(this)
+}
