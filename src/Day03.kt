@@ -41,4 +41,4 @@ private fun reduceInputByCommonBit(input: List<String>, evalFunction: (String) -
 }
 
 private fun String.isMostlyOnes(): Boolean =
-    this.filter { bit -> bit == '1' }.length * 2 >= this.length
+    (this.filter { it == '1' }.length * 2) >= this.length
