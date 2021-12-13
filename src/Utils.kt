@@ -37,7 +37,9 @@ fun String.toListOfInts(): List<Int> = this
     .filter { it.isNotBlank() }
     .map { value -> value.toInt() }
 
-fun Int.checkAndPrint(expected: Int) {
+inline fun <reified T> T.checkAndPrint(expected: T) {
     check(this == expected)
     println(this)
 }
+
+fun String.toIntList() = this.split(",").map { it.toInt() }

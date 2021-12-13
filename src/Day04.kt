@@ -40,7 +40,7 @@ class BingoBoard(numbers: List<String>) {
 
 fun main() {
     fun part1(input: List<String>): Int {
-        val numbersToPlay = input[0].split(",").map { it.toInt() }
+        val numbersToPlay = input[0].toIntList()
 
         val boards = input.subList(2, input.size)
             .windowed(5, 6)
